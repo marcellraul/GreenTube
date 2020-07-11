@@ -1,4 +1,6 @@
-<template>
+<template> 
+<div>
+
   <v-container  >
    <v-row justify="center">
       <v-card  outlined class="text-center" width="500" >
@@ -37,6 +39,7 @@
       </v-card>
    </v-row>
   </v-container>
+  </div>
 </template>
 
 <script>

@@ -21,6 +21,24 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item link href=/apisback>
+          <v-list-item-action>
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>ApisBack</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item link href=/apis>
+          <v-list-item-action>
+            <v-icon>mdi-code-tags</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Apis</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item link href="/publicaciones">
           <v-list-item-action>
             <v-icon>mdi-image</v-icon>

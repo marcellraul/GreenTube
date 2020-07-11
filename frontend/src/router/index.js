@@ -10,6 +10,21 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
+    path: '/apis',
+    name: 'Apis',
+    component: () => import(/* webpackChunkName: "Apis" */ '../views/ApisPruebas')
+  },
+  {
+    path: '/apisback',
+    name: 'ApisBack',
+    component: () => import(/* webpackChunkName: "ApisBack" */ '../views/APIsBack')
+  },
+  {
+    path: '/axios',
+    name: 'Axios',
+    component: () => import(/* webpackChunkName: "Axios" */ '../views/Axios')
+  },
+  {
     path: '/reacciones',
     name: 'Reacciones',
     component: () => import(/* webpackChunkName: "Reacciones" */ '../views/Reacciones')
