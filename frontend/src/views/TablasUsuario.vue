@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card>
-      aqui va un card
-    </v-card>
+  
     <v-container>
       <template>
         <v-data-table

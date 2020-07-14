@@ -55,8 +55,24 @@ export default {
   data() {
     return {
       tab: null,
-      items: ["Inicio", "Videos", "PlayList", "Canales", "Informacion","vuecorevideoplayer"],
+      items: ["Inicio", "Videos", "PlayList", "Canales", "Informacion",],
     };
+  },
+
+  created() {
+    this.$store.dispatch("users/get", this.URL_ID); //nombre del modulo y nombre del actions
+    //this.$store.dispatch("tipop/gets");
+  },
+  computed: {
+    
+     
+    suscriptores(){
+            return this.$store.getters["suscriptores/getItems"];
+    },
+
+    URL_ID() {
+      return this.$route.params.id;
+    }
   },
 };
 </script>

@@ -7,6 +7,7 @@ router.route('/')
 router.post('/createcanal', canal.CreateCanal)
 router.get('/canal',canal.getCanals )
 router.get('/canal/:id', canal.getCanal )
+router.get('/canal/:id', canal.getCanal )
 router.put('/canal/:id',canal.updateCanal )
 router.delete('/canal/:id',canal.deleteCanal )
 

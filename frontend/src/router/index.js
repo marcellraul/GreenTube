@@ -10,6 +10,11 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
+    path: '/home',
+    name: 'HomeH',
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+  },
+  {
     path: '/apis',
     name: 'Apis',
     component: () => import(/* webpackChunkName: "Apis" */ '../views/ApisPruebas')
@@ -18,6 +23,16 @@ Vue.use(VueRouter)
     path: '/apisback',
     name: 'ApisBack',
     component: () => import(/* webpackChunkName: "ApisBack" */ '../views/APIsBack')
+  },
+  {
+    path: '/apisback/:id',
+    name: 'ApisBackID',
+    component: () => import(/* webpackChunkName: "ApisBack" */ '../views/APISBackCanals.vue')
+  },
+   {
+    path: '/ApisBackID',
+    name: 'ApisBackID',
+    component: () => import(/* webpackChunkName: "ApisBack" */ '../views/APISBackCanals.vue')
   },
   {
     path: '/axios',
@@ -46,29 +61,25 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "Contacto" */ '../views/Contacto.vue')
   },
   //---------------Publicacion------------
+  //{
+    //path: '/publicaciones',
+   // name: 'Publicaciones',
+    //component: () => import(/* webpackChunkName: "Publicaciones" */ '../views/Publicaciones.vue')
+  //},
   {
-    path: '/publicaciones',
-    name: 'Publicaciones',
-    component: () => import(/* webpackChunkName: "Publicaciones" */ '../views/Publicaciones.vue')
-  },
-  {
-    path: '/watch',
+    path: '/watch/:id',
     name: 'Publicaciones',
     component: () => import(/* webpackChunkName: "Publicaciones" */ '../views/Wacth.vue')
   },
+  //{
+   // path: '/watch/',
+    //name: 'Publicaciones',
+    //component: () => import(/* webpackChunkName: "Publicaciones" */ '../views/Wacth.vue')
+  //},
   //------------Perfill----------------
+  
   {
     path: '/perfil',
-    name: 'Perfil',
-    component: () => import(/* webpackChunkName: "Perfil" */ '../views/Perfil.vue')
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import(/* webpackChunkName: "Profile" */ '../views/Profile.vue')
-  },
-  {
-    path: '/perfil/tabs',
     name: 'TabPerfilInicio',
     component: () => import(/* webpackChunkName: "Inicio" */ '../components/TabsCom.vue')
   },

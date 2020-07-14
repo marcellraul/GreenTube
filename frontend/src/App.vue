@@ -1,7 +1,6 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app clipped>
-      <v-list dense>
 
         <v-list-item link  >
           <v-list-item-action>
@@ -21,7 +20,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link href=/apisback>
+        <v-list-item link href="/apisback">
           <v-list-item-action>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-action>
@@ -75,8 +74,8 @@
             <v-list-item-title>Contacto</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
-        <v-list-item link href="/perfil/tabs">
+<!--link href="/perfil/" -->
+        <v-list-item   link href="/perfil" >
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
@@ -156,7 +155,8 @@
           </v-list-item-icon>
             <v-list-item-title>Starred</v-list-item-title>
             </v-list-item>
-          </v-list>
+
+      
 
         <v-list-item link>
           <v-list-item-action>
@@ -261,21 +261,52 @@
             </v-list-item>
         </router-link>
 
-      </v-list>
+   
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title><v-icon class="mr-2 large" color="#145A32" x-large >mdi-television</v-icon>GreenTube</v-toolbar-title>     
+        <v-toolbar-title link href="/" > <v-icon hover class="mr-2 large hover" color="#145A32" x-large  >mdi-television</v-icon>GreenTube</v-toolbar-title> 
       <v-spacer></v-spacer>
+      <strong >Marcell Viera  . </strong>
+        <!--<v-col  class="hidden-xs-only"  sm="5"  md="3" >
+                <strong >mmmmmmmmmmmm</strong>
+          </v-col> -->
+      <v-avatar color="indigo">
+        <v-icon dark>mdi-account-circle</v-icon>
+      </v-avatar>
+
+      <v-menu left bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn  icon v-bind="attrs"   v-on="on" >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+            <v-list-item link href="/perfil"
+              @click="() => {}">
+              <v-list-item-title>Perfil</v-list-item-title>
+            </v-list-item>
+            
+            <v-list-item link href="/home"
+              @click="logout">
+              <v-list-item-title>Cerrar Sesion</v-list-item-title>
+            </v-list-item> 
+
+        </v-list>
+      </v-menu>
+<!----
       <v-row justify="space-around">
+        
         <v-icon large color="green darken-2">mdi-domain</v-icon>
         <v-icon large color="blue darken-2">mdi-message-text</v-icon>
         <v-icon large color="purple darken-2">mdi-dialpad</v-icon>
         <v-icon large color="teal darken-2">mdi-email</v-icon>
         <v-icon large color="blue-grey darken-2">mdi-call-split</v-icon>
         <v-icon large color="orange darken-2">mdi-arrow-up-bold-box-outline</v-icon>
-      </v-row>
+        
+      </v-row>-->
 
     </v-app-bar>
 
@@ -284,10 +315,9 @@
          <!-- el que se muestra independiente de la ruta-->
          <!-- el que se muestra independiente de la ruta-->
 
-    <router-view>
-       <router-link to="/publicaciones">Home</router-link> 
-      
-    </router-view>
+      <router-view>
+        <router-link to="/publicaciones">Home</router-link> 
+      </router-view>
     </v-main>
   
     <v-footer app>
@@ -303,9 +333,33 @@ export default {
   },
   data: () => ({
     drawer: null,
+    perfil:{}
   }),
   created() {
     this.$vuetify.theme.dark = true;
+    
   },
+
+  methods:{
+   async logout(){
+      await this.$store.dispatch("auth/logout")
+    }
+  },
+  
+  computed: {
+    User() {
+                                //moduolo
+    console.log('algo computed',this.$store.getters["auth/getAuth"]);
+    return this.$store.getters["auth/getAuth"];
+    }
+  },
+
+  mounted() {
+      console.log('algo mounteeddd',this.$store.getters["auth/getAuth"]);
+       this.$store.getters["auth/getAuth"];
+      this.perfil = window.localStorage.getItem('auth')
+    console.log('get auth mounted',this.perfil);
+    //this.getTodos();
+  }
 };
 </script>

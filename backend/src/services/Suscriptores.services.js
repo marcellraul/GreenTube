@@ -1,13 +1,20 @@
 'use strict'
+
+
+
 const Suscriptores = require('../models/Suscriptores')
 
 async function createSuscriptores (req,res){
-    const {canal,canalnombre,estado} = req.body
+    const {
+        canal,
+        
+        estado 
+    } = req.body
     const newsuscriptor = {
         canal : canal,
-        canalnombre: canalnombre,
+        
         estado : estado
-    }
+    } 
     const suscrip = new Suscriptores(newsuscriptor)
     await suscrip.save()
     console.log('Saving Suscriptor')
@@ -24,6 +31,30 @@ async function getSuscriptores(req,res){
     console.log(gets)
     return res.json(gets)
 }
+
+async function getSuscriptoresCanal(req,res){
+    const {
+        post
+    } = req.params
+    const gets = await Suscriptores.find({
+        canal : post
+    })
+    console.log(gets)
+    return res.json(gets)
+}
+
+async function getSuscriptoresCanal(req,res){
+    const {
+        post
+    } = req.params
+    const gets = await Suscriptores.find({
+        canal : post
+    })
+    console.log(gets)
+    return res.json(gets)
+}
+
+
 
 async function getSuscriptor(req,res){
     const id = req.params.id
@@ -61,7 +92,8 @@ module.exports = {
     getSuscriptor,
     getSuscriptores,
     deleteSuscriptor,
-    updateSuscriptor
+    updateSuscriptor,
+    getSuscriptoresCanal
 }
 
 

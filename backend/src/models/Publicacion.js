@@ -1,7 +1,8 @@
 const {Schema, model} = require('mongoose')
 
 const publicacionScheme = new Schema({
-    titulo: { type: String, required: true},
+    canal: {type: String},
+    titulo: { type: String},
     desc: String,
     canal: String,
     tipo: String,

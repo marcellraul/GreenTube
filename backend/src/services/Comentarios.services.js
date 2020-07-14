@@ -2,12 +2,19 @@
 
 const Comentarios = require('../models/Comentarios')
 
-async function createComentarios(req,res){
-    const { publicacion, comentario,usuario, likes, unlikes}= req.body
+async function createComentarios(req, res) {
+    const {
+        publicacion,
+        comentario,
+        usuario,
+        likes,
+        unlikes
+    } = req.body
     const newcomentario = {
-        publicacion : publicacion,
+        publicacion: publicacion,
         comentario: comentario,
-        likes : likes,
+        usuario: usuario,
+        likes: likes,
         unlikes: unlikes
     }
     const co = new Comentarios(newcomentario)
@@ -17,29 +24,51 @@ async function createComentarios(req,res){
     return res.json({
         message: 'Comentario seccessfuly saved',
         co
-        
+
     })
 }
 
-async function getComentarios(req,res){
+async function getComentarios(req, res) {
     const gets = await Comentarios.find()
     console.log(gets)
     return res.json(gets)
 }
 
-async function getComentario(req,res){
+async function getComentariosPublicacion(req, res) {
+    const {
+        post
+    } = req.params
+    const gets = await Comentarios.find({
+        publicacion: post
+    })
+    console.log(gets)
+    return res.json(gets)
+}
+
+async function getComentario(req, res) {
     const id = req.params.id
     const get = await Comentarios.findById(id)
-    console.log(req.params.id)   
+    console.log(req.params.id)
     return res.json(get)
 }
 
-async function updateComentario(req,res){
+async function updateComentario(req, res) {
     const id = req.params.id
-    const { publicacion,comentario,usuario ,likes, unlikes} = req.body
-    const update = await Comentarios.findByIdAndUpdate(id,{ 
-        publicacion,comentario, likes, unlikes
-    }, {new : true})
+    const {
+        publicacion,
+        comentario,
+        usuario,
+        likes,
+        unlikes
+    } = req.body
+    const update = await Comentarios.findByIdAndUpdate(id, {
+        publicacion,
+        comentario,
+        likes,
+        unlikes
+    }, {
+        new: true
+    })
     console.log(update);
     return res.json({
         message: 'Update Comentario',
@@ -47,14 +76,14 @@ async function updateComentario(req,res){
     })
 }
 
-async function deleteComentario(req,res){
+async function deleteComentario(req, res) {
     const id = req.params.id
     const deletetu = await Comentarios.findByIdAndDelete(id)
     /* if(deletetipouser){
             const pathdelete = await fs.unlink(path.resolve(deletetipouser.imagePath))}*/
     console.log(deletetu);
     return res.json({
-        message:'Comentario delete',
+        message: 'Comentario delete',
         deletetu
     })
 }
@@ -64,6 +93,6 @@ module.exports = {
     getComentario,
     getComentarios,
     deleteComentario,
-    updateComentario
+    updateComentario,
+    getComentariosPublicacion
 }
-

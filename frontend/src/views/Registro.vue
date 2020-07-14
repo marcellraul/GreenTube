@@ -12,6 +12,7 @@
               <v-card-text>
                 <form>
                   <v-text-field
+                  color="#145A32"
                     v-model="name"
                     :error-messages="nameErrors"
                     :counter="15"
@@ -20,7 +21,21 @@
                     @input="$v.name.$touch()"
                     @blur="$v.name.$touch()"
                   ></v-text-field>
+
                   <v-text-field
+                  color="#145A32"
+            v-model="password"
+            :append-icon=" 'mdi-eye-off'"
+            :type=" 'password'"
+            name="input-10-1"
+            label="Password"
+            hint="At least 6 characters"
+            counter
+           
+          ></v-text-field>
+
+                  <v-text-field
+                  color="#145A32"
                     v-model="email"
                     :error-messages="emailErrors"
                     label="E-mail"
@@ -29,6 +44,7 @@
                     @blur="$v.email.$touch()"
                   ></v-text-field>
                   <v-select
+                  color="#145A32"
                     v-model="select"
                     :items="items"
                     :error-messages="selectErrors"
@@ -46,7 +62,7 @@
                     @blur="$v.checkbox.$touch()"
                   ></v-checkbox>
 
-                  <v-btn class="mr-4 " color="#145A32" @click="submit">submit</v-btn>
+                  <v-btn class="mr-4 " color="#145A32" @click="AddRegistro" type="submit">Resgistrar</v-btn>
                   <v-btn @click="clear">clear</v-btn>
                 </form>
               </v-card-text>
@@ -72,6 +88,7 @@ export default {
     name: { required, maxLength: maxLength(15) },
     email: { required, email },
     select: { required },
+    password: {required},
     checkbox: {
       checked(val) {
         return val;
@@ -80,11 +97,14 @@ export default {
   },
 
   data: () => ({
+    
     name: "",
     email: "",
+    password: "",
     select: null,
     items: ["Persona", "Empresa"],
     checkbox: false,
+    
   }),
 
   computed: {
@@ -118,6 +138,19 @@ export default {
   },
 
   methods: {
+      AddRegistro() {
+        const user = {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            tipo: this.select,
+
+        }
+        console.log(user)
+      const resp = this.$store.dispatch("users/create", user);
+      console.log(resp);
+    },
+
     submit() {
       this.$v.$touch();
     },
@@ -125,9 +158,19 @@ export default {
       this.$v.$reset();
       this.name = "";
       this.email = "";
+      this.password="";
       this.select = null;
       this.checkbox = false;
     },
+  }, 
+  mounted() {
+    console.log("mounted is working");
+  },
+
+  created() { 
+    this.$store.dispatch("users/gets"); //nombre del modulo y nombre del actions
+    //this.$store.dispatch("tipop/gets");
+    this.$store.dispatch("tipop/gets");
   },
 };
 </script>

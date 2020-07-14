@@ -1,9 +1,13 @@
 'use strict'
 const Publicacion = require('../models/Publicacion')
+const Canal = require('../models/Canal')
+
 
 async function createPublication(req,res){
     const {titulo,desc,tipo,categoria,likes,unlikes,views,comentarios,imagePreview,video} = req.body
+    const user = req.user
     const newpublicacion = {
+        canal: user._id,
         titulo: titulo,
         desc: desc,
         tipo: tipo,
@@ -18,7 +22,7 @@ async function createPublication(req,res){
     const pu = new Publicacion(newpublicacion)
     await pu.save()
     console.log('Savin Publicacion')
-    console.log(req.body)
+    console.log(pu)
     return res.json({
         message: 'Publicacion seccessfuly',
         pu
@@ -29,6 +33,26 @@ async function getPublicaciones(req,res){
     const gets = await Publicacion.find()
     console.log(gets);
     return res.json(gets)
+}
+
+async function getPublicacionCanal(req, res) {
+    const user = req.user
+    console.log(user);
+    const gets = await Publicacion.find({
+        canal: user._id
+    })
+    console.log(gets)
+    return res.json(gets)
+}
+
+async function getPublicacionCanalByID(req, res) {
+    const user = req.user
+    const canal = user.canal._id
+    //const id = user.Canal.nombre
+    console.log(canal);
+    const get = await Publicacion.findById({ canal: canal})
+    console.log(get)
+    return res.json(get)
 }
 
 async function getPublicacion(req,res){
@@ -74,5 +98,7 @@ module.exports = {
     getPublicacion,
     getPublicaciones,
     deletePublicacion,
-    updatePublication
+    updatePublication,
+    getPublicacionCanal,
+    getPublicacionCanalByID
 }

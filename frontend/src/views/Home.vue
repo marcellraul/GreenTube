@@ -2,23 +2,19 @@
   <v-container fluid grid-list-md>
     <!--para las colummnas, row para las columnna y wrap para el responsive-->
     <v-layout row wrap>
-      <!--cada colummna sera un v-flex-->
-      <!-- 12 toda la pantalla, 6 mitad, 3 un cuarto de la pantalla-->
-      <!-- <v-flex xs12 sm6 md3 lg2>
-                <v-card class="" v-for="todo in todos" :key="todo.id" height="350px" width="300px" :to="'watch'" hover>
-                <v-card-title primary-title>Title:{{todo.id}}</v-card-title>
-                <v-img height="200px" ></v-img>
-                <v-card-text> <p> {{todo.name}} </p> </v-card-text>
-                </v-card>
-      </v-flex>-->
-      <v-card  v-for="todo in todos" :key="todo.id" class="mx-auto mb-4" width="250" >
+      <v-card
+        v-for="Publicacion in Publicaciones"
+        :key="Publicacion.id"
+        class="mx-auto mb-4"
+        width="250"
+        :to="{name: 'Publicaciones', params:{id: Publicacion._id}}"
+        hover
+      >
         <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
-        <v-card-title>{{todo.id}}</v-card-title>
-        <v-card-subtitle class=" ">{{todo.name}}</v-card-subtitle>
-        <v-card-text  class="mt-1">{{todo.email}}</v-card-text>
-        
+        <v-card-title>{{Publicacion.titulo}}</v-card-title>
+        <v-card-subtitle class>{{Publicacion.desc}}</v-card-subtitle>
+        <v-card-text class="mt-1">{{Publicacion.canal}}</v-card-text>
       </v-card>
-
     </v-layout>
   </v-container>
 </template>
@@ -27,17 +23,15 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import axios from "axios";
-// :headers="headers"
-//:items="desserts"
-//:search="search"
+
 export default {
   name: "Home",
   components: {
     HelloWorld
   },
-  data() {
+  data: () => {
     return {
-         show: false,
+      show: false,
       search: "",
       desserts: [],
       headers: [],
@@ -45,7 +39,7 @@ export default {
     };
   },
   mounted() {
-    console.log("mounted is working");
+    //console.log("mounted is working");
     this.getTodos();
   },
   methods: {
@@ -58,7 +52,20 @@ export default {
           this.todos = response.data;
         })
         .catch(e => console.log(e));
+    },
+    getPublicaciones() {}
+  },
+  computed: {
+    Publicaciones() {
+                                 //moduolo
+      console.log('publicaciones: ',this.$store.getters["post/getItems"]);
+      return this.$store.getters["post/getItems"];
     }
+  },
+
+  created() {
+    this.$store.dispatch("post/gets"); //nombre del modulo y nombre del actions
+    //this.$store.dispatch("tipop/gets");
   }
 };
 </script>
