@@ -43,7 +43,7 @@ async function getSuscriptoresCanal(req,res){
     return res.json(gets)
 }
 
-async function getSuscriptoresCanal(req,res){
+async function getSuscriptoresCanalByID(req,res){
     const {
         post
     } = req.params

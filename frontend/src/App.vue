@@ -19,7 +19,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
+<!--
         <v-list-item link href="/apisback">
           <v-list-item-action>
             <v-icon>mdi-cog</v-icon>
@@ -46,7 +46,7 @@
             <v-list-item-title>Publicaciones</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
+-->
   
         <v-list-item link href="/login">
           <v-list-item-action>
@@ -268,7 +268,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title link href="/" > <v-icon hover class="mr-2 large hover" color="#145A32" x-large  >mdi-television</v-icon>GreenTube</v-toolbar-title> 
       <v-spacer></v-spacer>
-      <strong >Marcell Viera  . </strong>
+      <strong > </strong>
         <!--<v-col  class="hidden-xs-only"  sm="5"  md="3" >
                 <strong >mmmmmmmmmmmm</strong>
           </v-col> -->

@@ -1,7 +1,7 @@
 <template>
   <v-row align="center" t6>
     <v-card class="mx-auto mt-6 mb-6" max-width="650" tile>
-      <v-toolbar-title align="center" class="mx-auto mt-6 mb-6 " > Mi Canales</v-toolbar-title>
+      <v-toolbar-title align="center" class="mx-auto mt-6 mb-6 " > Seguidores</v-toolbar-title>
       <v-list
         
         :disabled="disabled"

@@ -4,7 +4,7 @@
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="10" md="8">
-            <v-card class="elevation-3 ">
+            <v-card class="elevation-3">
               <v-toolbar color="#145A32" dark flat>
                 <v-toolbar-title>Registro</v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -12,7 +12,7 @@
               <v-card-text>
                 <form>
                   <v-text-field
-                  color="#145A32"
+                    color="#145A32"
                     v-model="name"
                     :error-messages="nameErrors"
                     :counter="15"
@@ -23,19 +23,18 @@
                   ></v-text-field>
 
                   <v-text-field
-                  color="#145A32"
-            v-model="password"
-            :append-icon=" 'mdi-eye-off'"
-            :type=" 'password'"
-            name="input-10-1"
-            label="Password"
-            hint="At least 6 characters"
-            counter
-           
-          ></v-text-field>
+                    color="#145A32"
+                    v-model="password"
+                    :append-icon=" 'mdi-eye-off'"
+                    :type=" 'password'"
+                    name="input-10-1"
+                    label="Password"
+                    hint="At least 6 characters"
+                    counter
+                  ></v-text-field>
 
                   <v-text-field
-                  color="#145A32"
+                    color="#145A32"
                     v-model="email"
                     :error-messages="emailErrors"
                     label="E-mail"
@@ -44,7 +43,7 @@
                     @blur="$v.email.$touch()"
                   ></v-text-field>
                   <v-select
-                  color="#145A32"
+                    color="#145A32"
                     v-model="select"
                     :items="items"
                     :error-messages="selectErrors"
@@ -62,7 +61,7 @@
                     @blur="$v.checkbox.$touch()"
                   ></v-checkbox>
 
-                  <v-btn class="mr-4 " color="#145A32" @click="AddRegistro" type="submit">Resgistrar</v-btn>
+                  <v-btn class="mr-4" color="#145A32" @click="AddRegistro" type="submit">Resgistrar</v-btn>
                   <v-btn @click="clear">clear</v-btn>
                 </form>
               </v-card-text>
@@ -88,23 +87,21 @@ export default {
     name: { required, maxLength: maxLength(15) },
     email: { required, email },
     select: { required },
-    password: {required},
+    password: { required },
     checkbox: {
       checked(val) {
         return val;
-      },
-    },
+      }
+    }
   },
 
   data: () => ({
-    
     name: "",
     email: "",
     password: "",
     select: null,
     items: ["Persona", "Empresa"],
-    checkbox: false,
-    
+    checkbox: false
   }),
 
   computed: {
@@ -134,19 +131,18 @@ export default {
       !this.$v.email.email && errors.push("Must be valid e-mail");
       !this.$v.email.required && errors.push("E-mail is required");
       return errors;
-    },
+    }
   },
 
   methods: {
-      AddRegistro() {
-        const user = {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            tipo: this.select,
-
-        }
-        console.log(user)
+    AddRegistro() {
+      const user = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        tipo: this.select
+      };
+      console.log(user);
       const resp = this.$store.dispatch("users/create", user);
       console.log(resp);
     },
@@ -158,19 +154,19 @@ export default {
       this.$v.$reset();
       this.name = "";
       this.email = "";
-      this.password="";
+      this.password = "";
       this.select = null;
       this.checkbox = false;
-    },
-  }, 
+    }
+  },
   mounted() {
     console.log("mounted is working");
   },
 
-  created() { 
+  created() {
     this.$store.dispatch("users/gets"); //nombre del modulo y nombre del actions
     //this.$store.dispatch("tipop/gets");
     this.$store.dispatch("tipop/gets");
-  },
+  }
 };
 </script>

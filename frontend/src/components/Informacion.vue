@@ -6,7 +6,7 @@
           <v-list-item-content>
             <div class="overline mb-4" ><v-icon class="mr-4" >mdi-television</v-icon>GreenTube</div>
             <v-list-item-title class="headline mb-1"
-              >Aqui va tu Canal</v-list-item-title
+              >Marcell Viera</v-list-item-title
             >
             <v-list-item-subtitle
               >Descripcion de tu canal </v-list-item-subtitle

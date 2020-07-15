@@ -57,12 +57,10 @@ export default {
   },
   computed: {
     Publicaciones() {
-                                 //moduolo
       console.log('publicaciones: ',this.$store.getters["post/getItems"]);
       return this.$store.getters["post/getItems"];
     }
   },
-
   created() {
     this.$store.dispatch("post/gets"); //nombre del modulo y nombre del actions
     //this.$store.dispatch("tipop/gets");
